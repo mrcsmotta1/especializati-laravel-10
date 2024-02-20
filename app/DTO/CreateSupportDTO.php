@@ -3,7 +3,6 @@
 namespace App\DTO;
 
 use App\Http\Requests\StoreUpdateSupport;
-use Illuminate\Contracts\Cache\Store;
 
 class CreateSupportDTO
 {
@@ -19,7 +18,7 @@ class CreateSupportDTO
         return new self(
             $request->subject,
             'a',
-            $request->body,
-        )
+            $request->body
+        );
     }
 }
