@@ -4,8 +4,9 @@ namespace App\Repositories;
 
 use stdClass;
 use App\Models\Support;
-use App\DTO\CreateSupportDTO;
-use App\DTO\UpdateSupportDTO;
+use App\DTO\Supports\CreateSupportDTO;
+use App\DTO\Supports\UpdateSupportDTO;
+use App\Repositories\PaginationPresenter;
 use App\Repositories\SupportRepositoryInterface;
 
 class SupportEloquentORM implements SupportRepositoryInterface
@@ -26,7 +27,8 @@ class SupportEloquentORM implements SupportRepositoryInterface
         })
         ->paginate($totalPerPage, ['*'], 'page', $page);
 
-        dd($result);
+        return new PaginationPresenter($result);
+        // dd((new PaginationPresenter($result))->items());
     }
     public function getAll(string $filter = null): array
     {
